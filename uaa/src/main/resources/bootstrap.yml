@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: uaa
+  profiles:
+    active: dev
+
+eureka:
+  client:
+    # 更新实例信息的变化到eureka服务端的间隔时间，单位为秒
+    instance-info-replication-interval-seconds: 10
+    # 从eureka服务端获取注册信息的间隔时间，单位为秒
+    registry-fetch-interval-seconds: 10
+  instance:
+    # 是否优先使用IP地址作为主机名的标识
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+    # Eureka客户端像服务端发送心跳的时间间隔，单位为秒
+    lease-renewal-interval-in-seconds: 5
+    # Eureka服务端在收到最后一次心跳之后的等待时间的时间上限，单位为秒。超过该时间之后服务端会将该服务实例从服务清单中剔除，从而禁止服务调用请求被发送到该实例上
+    lease-expiration-duration-in-seconds: 10
+    metadata-map:
+      zone: ${spring.cloud.client.ip-address}
+      startup: ${random.int}    # needed to trigger info and endpoint update after restart

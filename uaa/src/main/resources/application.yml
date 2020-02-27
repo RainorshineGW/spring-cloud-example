@@ -1,0 +1,15 @@
+security:
+  oauth2:
+    authorization:
+      token-key-access: "permitAll()"
+      check-token-access: "permitAll()"
+      jwt:
+        key-store: "app.keystore"
+        key-alias: "app"
+        key-password: "123456"
+    resource:
+      id: uaa
+server:
+  port: 21000
+
+
