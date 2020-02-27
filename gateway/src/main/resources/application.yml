@@ -1,0 +1,28 @@
+server:
+  port: 20000
+
+ribbon:
+  # 请求处理的超时时间
+  ReadTimeout: 300000
+  # 请求连接超时时间
+  ConnectTimeout: 5000
+
+security:
+  oauth2:
+    client:
+      client-id: app
+      client-secret: app_secret
+      access-token-uri: http://uaa/oauth/token
+      user-authorization-uri: http://uaa/oauth/authorize
+    resource:
+      id: gateway
+      jwt:
+        key-uri: http://uaa/oauth/token_key
+
+zuul:
+  # 禁用默认路由，只认配置的路由
+  ignoredServices: '*'
+  sensitive-headers:
+  retryable: true
+
+

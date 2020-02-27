@@ -1,0 +1,5 @@
+zuul:
+  routes:
+    uaa:
+      path: /uaa/**
+      serviceId: uaa
